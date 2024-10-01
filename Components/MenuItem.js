@@ -1,10 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 
 export default function MenuItem({ item, pressHandler }) {
     return (
         <TouchableOpacity onPress={() => pressHandler(item.key)}>
             <View style={styles.item}>
+                <Image 
+                    source={{ uri: item.picture }} 
+                    style={styles.image} 
+                />
                 <Text style={styles.title}>{item.dishName}</Text>
                 <Text style={styles.description}>{item.description}</Text>
                 <Text style={styles.price}>R{item.price}</Text>
@@ -21,6 +25,11 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 10,
         backgroundColor: '#f8f8f8',
+    },
+    image: {
+        width: 65,
+        height: 65,
+        marginBottom: 10,
     },
     title: {
         fontSize: 18,

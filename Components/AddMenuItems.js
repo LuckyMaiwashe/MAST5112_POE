@@ -2,12 +2,19 @@ import React, { useState } from 'react';
 import { StyleSheet, TextInput, View, Button } from 'react-native';
 
 export default function AddMenuItems({ submitHandler }) {
+    const [picture, setPicture] = useState('');
     const [dishName, setDishName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
 
     return (
         <View style={styles.container}>
+            <TextInput
+                style={styles.input}
+                placeholder="Picture URL"
+                onChangeText={setPicture}
+                value={picture}
+            />
             <TextInput
                 style={styles.input}
                 placeholder="Dish Name"
@@ -28,7 +35,7 @@ export default function AddMenuItems({ submitHandler }) {
                 value={price}
             />
             <Button
-                onPress={() => submitHandler(dishName, description, price)}
+                onPress={() => submitHandler(picture, dishName, description, price)}
                 title="Add Item"
             />
         </View>
@@ -48,3 +55,4 @@ const styles = StyleSheet.create({
         paddingHorizontal: 8,
     },
 });
+

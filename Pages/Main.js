@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
-import Header from './Components/header';
-import AddMenuItems from './Components/AddMenuItems';
-import MenuItem from './Components/MenuItem';
+import Header from '../Components/header';
+import AddMenuItems from '../Components/AddMenuItems';
+import MenuItem from '../Components/MenuItem';
 
-export default function App() {
-    const [MenuItems, setMenuItems] = useState([]);
+export default function MainScreen() {
+    const [menuItems, setMenuItems] = useState([]);
 
     const pressHandler = (key) => {
         setMenuItems((prevMenuItems) => {
@@ -13,11 +13,12 @@ export default function App() {
         });
     };
 
-    const submitHandler = (dishName, description, price) => {
+    const submitHandler = (picture, dishName, description, price) => {
         setMenuItems((prevMenuItems) => {
             return [
                 ...prevMenuItems,
                 {
+                    picture: picture,  
                     dishName: dishName,
                     description: description,
                     price: price,
@@ -32,7 +33,7 @@ export default function App() {
             <Header />
             <AddMenuItems submitHandler={submitHandler} />
             <FlatList
-                data={MenuItems}
+                data={menuItems}
                 renderItem={({ item }) => (
                     <MenuItem item={item} pressHandler={pressHandler} />
                 )}
