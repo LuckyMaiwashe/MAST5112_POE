@@ -33,6 +33,7 @@ export default function AddMenuItems({ submitHandler }) {
 
     submitHandler(picture, dishName, description, parsedPrice.toFixed(2));
 
+
     setPicture('');
     setDishName('');
     setDescription('');
