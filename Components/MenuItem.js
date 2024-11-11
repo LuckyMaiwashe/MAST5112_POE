@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Image, Dimensions } from 'react-native';
+
+const screenWidth = Dimensions.get('window').width;
 
 export default function MenuItem({ item, pressHandler }) {
     return (
@@ -17,14 +19,35 @@ export default function MenuItem({ item, pressHandler }) {
     );
 }
 
+export function MenuList({ menuItems, pressHandler }) {
+    return (
+        <View style={styles.container}>
+            {menuItems.map(item => (
+                <MenuItem key={item.key} item={item} pressHandler={pressHandler} />
+            ))}
+        </View>
+    );
+}
+
 const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        flexWrap: 'wrap', 
+        justifyContent: 'space-between', 
+        paddingHorizontal: 10, 
+    },
     item: {
-        padding: 15,
-        marginTop: 15,
+        padding: 10, 
+        marginVertical: 10,
+        marginHorizontal: 5,
         borderColor: 'maroon',
         borderWidth: 1,
         borderRadius: 10,
         backgroundColor: '#f8f8f8',
+        width: screenWidth / 2 - 30, 
+        height: 200,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     image: {
         width: 65,
@@ -32,17 +55,20 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     title: {
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: 'bold',
+        textAlign: 'center',
     },
     description: {
-        fontSize: 14,
+        fontSize: 12,
         color: '#555',
-        marginTop: 5,
+        textAlign: 'center',
     },
     price: {
-        fontSize: 16,
+        fontSize: 14,
         color: '#333',
-        marginTop: 10,
+        marginTop: 5,
+        textAlign: 'center',
     },
 });
+
